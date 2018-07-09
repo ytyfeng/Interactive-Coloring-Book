@@ -58,16 +58,39 @@
 			// your rectangle gradient interaction goes in this function
 			// you may also add code outside of the function (e.g., global variables)
 			function myGradientInteraction(){
-				var tool = new paper.Tool();
+        var tool = new paper.Tool();
+        
+        paper.install(window);
+        // TODO1:
+        // Using paper.js, create a rectangle on the center of the screen 
+        // (place the rectangle over the mandala, no need to remove the mandala first). Fill color red. 
+        var rect = new paper.Rectangle(new Point(100, 100), new Size(500, 500));
+        var newPath = new Path.Rectangle(rect);
+        newPath.fillColor = "red";
 
+        // TODO2:
+        // Create a paper.Tool that has the following interaction
+        // ~ 20-30 lines of code different from skeleton
+        // On mouseup, set the fillColor of the rectangle to a  gradient color object as follows: 
+        // stops: the last two colors selected from the color palette (cp.history)
+        // origin: the mousedown point
+        // destination: the mouseup point
+        
 				tool.onMouseDown = function (event) {
-
+        
 				}
 
 				tool.onMouseUp = function (event) {
-					
+					newPath.fillColor = new Color({
+            gradient: {
+              stops: [cp.history[cp.history.length - 1], cp.history[cp.history.length - 2]]
+            },
+                 origin: event.point,
+                 destination: event.lastPoint
+            }
+        );
 				}
-			}
+      }
 
 			// your custom interaction goes here!
 			// you may replace everything
@@ -80,7 +103,19 @@
 				        hit.item.fillColor = cp.history[cp.history.length - 1];
 				    }
 				}
+        
+
+        tool.onMouseMove = function (event) {
+          var hit = mandala.item.hitTest(event.point, { tolerance: 5, fill: true });
+				    if (hit) {
+				        hit.item.fillColor = {
+                  hue: event.count*1.5,
+                  saturation: 1,
+                  brightness: 1
+              };
+				    }
 			}
+      }
 
 
 			// create a color palette with the given colors
