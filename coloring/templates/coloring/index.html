@@ -61,6 +61,7 @@
         var tool = new paper.Tool();
         
         paper.install(window);
+        
         // TODO1:
         // Using paper.js, create a rectangle on the center of the screen 
         // (place the rectangle over the mandala, no need to remove the mandala first). Fill color red. 
@@ -75,15 +76,12 @@
         // stops: the last two colors selected from the color palette (cp.history)
         // origin: the mousedown point
         // destination: the mouseup point
-        
-				tool.onMouseDown = function (event) {
-        
-				}
 
 				tool.onMouseUp = function (event) {
 					newPath.fillColor = new Color({
             gradient: {
-              stops: [cp.history[cp.history.length - 1], cp.history[cp.history.length - 2]]
+              stops: [cp.history[cp.history.length - 1], 
+                      cp.history[cp.history.length - 2]]
             },
                  origin: event.point,
                  destination: event.lastPoint
