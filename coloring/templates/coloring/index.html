@@ -103,7 +103,7 @@
 				}
         
 
-        tool.onMouseMove = function (event) {
+        tool.onMouseDrag = function (event) {
           var hit = mandala.item.hitTest(event.point, { tolerance: 5, fill: true });
 				    if (hit) {
 				        hit.item.fillColor = {
