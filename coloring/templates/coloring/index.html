@@ -36,6 +36,20 @@
 		    display: block;
 		}
 	</style>
+  
+  <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCeY5FQC7TLxk1bf6aOZK21UU920q3CgEE",
+    authDomain: "interactive-coloring-book.firebaseapp.com",
+    databaseURL: "https://interactive-coloring-book.firebaseio.com",
+    projectId: "interactive-coloring-book",
+    storageBucket: "",
+    messagingSenderId: "125597909396"
+  };
+  firebase.initializeApp(config);
+</script>
 
 	<script type="text/javascript" canvas="canvas">
 		window.onload = function() {
